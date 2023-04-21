@@ -1,0 +1,28 @@
+# Overview: build and create a release via Google Cloud Deploy for GKE
+# NOTE: currently requires SCM triggering due to dependency on the COMMIT_SHA variable
+# Update these values, if desired
+steps:
+  - name: maven:3-eclipse-temurin
+    entrypoint: mvn
+    args: ['test']
+  # build app with Maven
+  - name: maven:3-eclipse-temurin-17
+    entrypoint: mvn
+    args: ["package", "-Dmaven.test.skip=true"]
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: /bin/sh
+    args:
+    - '-c'
+    - |
+      # copy files to destination
+      gcloud compute scp --zone ${_ZONE} target/hello-world-*.war cloudbuild@${_INSTANCE_NAME}:/var/lib/tomcat9/webapps/ --tunnel-through-iap
+substitutions:
+  _ZONE: us-central1-c # default value
+  _INSTANCE_NAME: iap-demo-vm # default value
+        #artifacts:
+        #  mavenArtifacts:
+        #  - repository: 'artifactregistry://us-central1-maven.pkg.dev/cwsdemo/demo-app'
+        #    path: 'target/demo-app-1.0.0.war'
+        #    artifactId: 'artifact'
+        #    groupId: 'com.example'
+        #    version: '1.0.0'
