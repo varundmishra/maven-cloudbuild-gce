@@ -20,10 +20,10 @@ steps:
 substitutions:
   _ZONE: us-central1-c # default value
   _INSTANCE_NAME: iap-demo-vm # default value
-        #artifacts:
-        #  mavenArtifacts:
-        #  - repository: 'artifactregistry://us-central1-maven.pkg.dev/cwsdemo/demo-app'
-        #    path: 'target/demo-app-1.0.0.war'
-        #    artifactId: 'artifact'
-        #    groupId: 'com.example'
-        #    version: '1.0.0'
+artifacts:
+  mavenArtifacts:
+  - repository: 'artifactregistry://us-central1-maven.pkg.dev/cwsdemo/hello-world'
+      path: 'target/hello-world-2.3.0.RELEASE.war'
+      artifactId: 'artifact'
+      groupId: 'com.example'
+      version: '1.0.0'
