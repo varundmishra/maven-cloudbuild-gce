@@ -9,6 +9,8 @@ steps:
   - name: maven:3-eclipse-temurin-17
     entrypoint: mvn
     args: ["package", "-Dmaven.test.skip=true"]
+  - name: gcr.io/cloud-builders/mvn
+    args: ['deploy']
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: /bin/sh
     args:
@@ -21,9 +23,9 @@ substitutions:
   _ZONE: us-central1-c # default value
   _INSTANCE_NAME: iap-demo-vm # default value
     #artifacts:
-    #mavenArtifacts:
-    #- repository: 'artifactregistry://us-central1-maven.pkg.dev/cwsdemo/hello-world'
-    #  path: 'target/hello-world-2.3.0.RELEASE.war'
-    #  artifactId: 'artifact'
-    #  groupId: 'com.helloworld'
-    #  version: '1.0.0'
+    #  mavenArtifacts:
+    #  - repository: 'artifactregistry://us-central1-maven.pkg.dev/cwsdemo/hello-world'
+    #    path: 'target/hello-world-2.3.0.RELEASE.war'
+#    artifactId: 'artifact'
+#    groupId: 'com.helloworld'
+#    version: '1.0.0'
