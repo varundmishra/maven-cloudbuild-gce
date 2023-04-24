@@ -9,8 +9,6 @@ steps:
   - name: maven:3-eclipse-temurin-17
     entrypoint: mvn
     args: ["package", "-Dmaven.test.skip=true"]
-  - name: gcr.io/cloud-builders/mvn
-    args: ['deploy']
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: /bin/sh
     args:
@@ -19,6 +17,8 @@ steps:
       # copy files to destination
       gcloud compute scp --zone ${_ZONE} target/hello-world-*.war cloudbuild@${_INSTANCE_NAME}:/var/lib/tomcat9/webapps/ --tunnel-through-iap
       gcloud compute ssh ${_INSTANCE_NAME} --tunnel-through-iap --zone ${_ZONE} --command 'sudo service tomcat9 restart'
+  - name: gcr.io/cloud-builders/mvn
+    args: ['deploy']
 substitutions:
   _ZONE: us-central1-c # default value
   _INSTANCE_NAME: iap-demo-vm # default value
