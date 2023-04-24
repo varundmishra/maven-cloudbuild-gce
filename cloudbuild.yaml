@@ -18,7 +18,8 @@ steps:
     - '-c'
     - |
       # copy files to destination
-      gcloud compute scp --zone ${_ZONE} target/hello-world-*.war cloudbuild@${_INSTANCE_NAME}:/var/lib/tomcat9/webapps/ --tunnel-through-iap
+      mv target/hello-world-*.war target/hello-world.war
+      gcloud compute scp --zone ${_ZONE} target/hello-world.war cloudbuild@${_INSTANCE_NAME}:/var/lib/tomcat9/webapps/hello-world.war --tunnel-through-iap
       gcloud compute ssh ${_INSTANCE_NAME} --tunnel-through-iap --zone ${_ZONE} --command 'sudo service tomcat9 restart'
 substitutions:
   _ZONE: us-central1-c # default value
