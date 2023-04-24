@@ -8,7 +8,7 @@ xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/
    <groupId>com.javademo</groupId>
    <artifactId>hello-world</artifactId>
    <packaging>war</packaging>
-   <version>6.0</version>
+   <version>1.0</version>
 
    <parent>
       <groupId>org.springframework.boot</groupId>
