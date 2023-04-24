@@ -49,7 +49,6 @@ xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/
       </plugins>
    </build>
 
-<project>
   <distributionManagement>
     <snapshotRepository>
       <id>artifact-registry</id>
@@ -83,6 +82,5 @@ xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/
       </extension>
     </extensions>
   </build>
-</project>
    
 </project>
